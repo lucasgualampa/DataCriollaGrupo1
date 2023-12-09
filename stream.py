@@ -16,21 +16,20 @@ connection = connector.connect(
     password=password
 )
 
-if connection.is_connected():
-    print("Conectado a la base de datos")
-else:
-    print("Error al conectar a la base de datos")
 
-from sqlalchemy import create_engine
 from sqlalchemy.exc import SQLAlchemyError
 
-engine = create_engine('mysql+mysqlconnector://root:root1234@localhost/olist_db')
+try:
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM olist_sales_by_date_hour_city_category")
 
-cursor = connection.cursor()
-cursor.execute("SELECT * FROM olist_sales_by_date_hour_city_category")
+    results = cursor.fetchall()
 
-results = cursor.fetchall()
-
-st.dataframe(results)
-# Cerrar la conexión
-connection.close()
+    st.dataframe(results)
+except SQLAlchemyError as e:
+    st.error(f"Error retrieving data: {e}")
+finally:
+    if cursor:
+        cursor.close()
+    if connection:
+        connection.close()
