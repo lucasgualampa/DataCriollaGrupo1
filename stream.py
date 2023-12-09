@@ -13,8 +13,7 @@ connection = connector.connect(
     port=port,
     database=database,
     user=user,
-    password=password,
-    driver = "pymysql"
+    password=password
 )
 
 if connection.is_connected():
