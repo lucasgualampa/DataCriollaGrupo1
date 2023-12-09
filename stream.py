@@ -23,6 +23,7 @@ connection = connector.connect(
     database=database,
     user=user,
     password=password,
+    driver = "pymysql"
 )
 
 if connection.is_connected():
