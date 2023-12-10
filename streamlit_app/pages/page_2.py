@@ -1,4 +1,3 @@
-import sqlalchemy
 import mysql
 import mysql.connector
 import streamlit as st
