@@ -1,5 +1,4 @@
 import streamlit as st 
-import mysql.connector as connector
 
 host = "localhost"
 port = 3306
