@@ -7,11 +7,10 @@ user = "root"
 password = "root1234"
 
 # Initialize connection.
-conn = st.connection('mysql', type='sql')
+conn = st.connection('mysql', type='sql', persist="disk")
 
 # Perform query.
-df = conn.query('SELECT * FROM olist_sales_by_date_hour_city_category;', ttl=600)
+df = conn.query('SELECT * FROM olist_orders_dataset', ttl=600)
 
 # Print results.
-for row in df.itertuples():
-    st.write(f"{row.name} has a :{row.pet}:")
+st.dataframe(df)
